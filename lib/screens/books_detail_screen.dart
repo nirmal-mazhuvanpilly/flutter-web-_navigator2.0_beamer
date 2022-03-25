@@ -14,9 +14,30 @@ class BooksDetailsScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("ID : ${book?.id}"),
-            Text("Name : ${book?.name}"),
-            Text("Author : ${book?.author}"),
+            CircleAvatar(child: Text(book?.id.toString() ?? "")),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Book Name : ",
+                    style:
+                        TextStyle(color: Colors.blue.shade900, fontSize: 20)),
+                Text(book?.name ?? "",
+                    style:
+                        TextStyle(color: Colors.blue.shade900, fontSize: 20)),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Author : ",
+                    style:
+                        TextStyle(color: Colors.blue.shade900, fontSize: 20)),
+                Text(book?.author ?? "",
+                    style:
+                        TextStyle(color: Colors.blue.shade900, fontSize: 20)),
+              ],
+            ),
           ],
         ),
       ),

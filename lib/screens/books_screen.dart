@@ -30,7 +30,9 @@ class BooksScreen extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(10),
                       margin: const EdgeInsets.all(10),
-                      color: Colors.grey.shade200,
+                      decoration: BoxDecoration(
+                          color: Colors.grey.shade300,
+                          borderRadius: BorderRadius.circular(10)),
                       child: Row(
                         children: [
                           CircleAvatar(
@@ -40,8 +42,18 @@ class BooksScreen extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(bookData.name ?? ""),
-                              Text(bookData.author ?? ""),
+                              Text(
+                                bookData.name ?? "",
+                                style: TextStyle(
+                                    color: Colors.blue.shade900,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              Text(
+                                bookData.author ?? "",
+                                style: TextStyle(
+                                    color: Colors.blue.shade900,
+                                    fontWeight: FontWeight.w500),
+                              ),
                             ],
                           )
                         ],

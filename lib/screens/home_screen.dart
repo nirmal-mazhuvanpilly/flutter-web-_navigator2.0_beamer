@@ -13,8 +13,8 @@ class HomeScreen extends StatelessWidget {
         child: GestureDetector(
           onTap: () => context.beamToNamed('/books'),
           child: Container(
-              height: 100,
-              width: 100,
+              height: 200,
+              width: 200,
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
@@ -25,7 +25,10 @@ class HomeScreen extends StatelessWidget {
               child: const Center(
                   child: Text(
                 'See books',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500),
               ))),
         ),
       ),
