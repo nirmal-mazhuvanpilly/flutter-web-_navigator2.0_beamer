@@ -1,6 +1,7 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_app_navigation/models/book.dart';
+import 'package:flutter_web_app_navigation/widgets/common_app_bar.dart';
 
 class BooksScreen extends StatelessWidget {
   BooksScreen({Key? key}) : super(key: key);
@@ -17,6 +18,7 @@ class BooksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CommonAppBar(),
       body: Center(
         child: ListView(
           children: bookList!

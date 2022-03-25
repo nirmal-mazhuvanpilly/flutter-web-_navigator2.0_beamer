@@ -11,7 +11,7 @@ class BooksLocation extends BeamLocation<BeamState> {
     List<BeamPage> pages = [];
     pages.add(const BeamPage(
       key: ValueKey("Home"),
-      title: "HomePage",
+      title: "HomePage", //Title Name in Browser
       child: HomeScreen(),
     ));
     if (state.uri.pathSegments.contains("books")) {
@@ -30,7 +30,7 @@ class BooksLocation extends BeamLocation<BeamState> {
         pages.add(
           BeamPage(
             key: ValueKey('Book-$bookIdParameter'),
-            title: 'Book #$bookIdParameter',
+            title: 'Book $bookIdParameter',
             child: BooksDetailsScreen(
               book: bookData,
             ),
