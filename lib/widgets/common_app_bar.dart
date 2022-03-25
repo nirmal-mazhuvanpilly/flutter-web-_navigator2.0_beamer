@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 class CommonAppBar extends PreferredSize {
-  CommonAppBar({Key? key})
+  final String? title;
+  final bool backButtonEnabled;
+  CommonAppBar({Key? key, this.title, this.backButtonEnabled = true})
       : super(
             key: key,
             child: (kIsWeb)
                 ? const SizedBox()
                 : Container(
-                    height: 50,
+                    height: 80,
                     decoration: BoxDecoration(
                         gradient: LinearGradient(colors: [
                       Colors.blue,
@@ -16,16 +18,36 @@ class CommonAppBar extends PreferredSize {
                     ])),
                     child: Builder(
                       builder: (context) {
-                        return Row(
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            IconButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                icon: const Icon(
-                                  Icons.arrow_back_sharp,
-                                  color: Colors.white,
-                                ))
+                            const SizedBox(),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 15, horizontal: 15),
+                              child: Row(
+                                children: [
+                                  if (backButtonEnabled)
+                                    GestureDetector(
+                                      onTap: (() {
+                                        Navigator.of(context).pop();
+                                      }),
+                                      child: const Icon(
+                                        Icons.arrow_back_sharp,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  if (title != null)
+                                    Text(
+                                      title,
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500),
+                                    )
+                                ],
+                              ),
+                            ),
                           ],
                         );
                       },
