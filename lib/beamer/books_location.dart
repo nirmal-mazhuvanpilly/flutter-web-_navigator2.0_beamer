@@ -23,6 +23,13 @@ class BooksLocation extends BeamLocation<BeamState> {
         child: BooksScreen(),
       ));
     }
+    if (state.pathParameters.isEmpty) {
+      pages.add(const BeamPage(
+        key: ValueKey("Page not found"),
+        title: "Page not found",
+        child: PageNotFound(),
+      ));
+    }
     final String? bookIdParameter = state.pathParameters["bookId"];
     if (bookIdParameter != null) {
       // Book? bookData = data as Book?; // Data passed from the screen
