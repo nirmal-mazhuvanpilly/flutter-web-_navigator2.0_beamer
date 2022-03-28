@@ -10,26 +10,53 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: CommonAppBar(title: "HomeScreen", backButtonEnabled: false),
       body: Center(
-        child: GestureDetector(
-          onTap: () => context.beamToNamed('/books'),
-          child: Container(
-              height: 200,
-              width: 200,
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: LinearGradient(colors: [
-                    Colors.blue,
-                    Colors.blue.shade900,
-                  ])),
-              child: const Center(
-                  child: Text(
-                'See books',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500),
-              ))),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: () => context.beamToNamed('/books'),
+              child: Container(
+                  height: 200,
+                  width: 200,
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: LinearGradient(colors: [
+                        Colors.blue,
+                        Colors.blue.shade900,
+                      ])),
+                  child: const Center(
+                      child: Text(
+                    'See books',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500),
+                  ))),
+            ),
+            const SizedBox(width: 10),
+            GestureDetector(
+              onTap: () => context.beamToNamed('/contacts'),
+              child: Container(
+                  height: 200,
+                  width: 200,
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: LinearGradient(colors: [
+                        Colors.blue,
+                        Colors.blue.shade900,
+                      ])),
+                  child: const Center(
+                      child: Text(
+                    'See Contacts',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500),
+                  ))),
+            ),
+          ],
         ),
       ),
     );

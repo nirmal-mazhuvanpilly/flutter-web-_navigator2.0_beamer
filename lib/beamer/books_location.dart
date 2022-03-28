@@ -15,7 +15,16 @@ class BooksLocation extends BeamLocation<BeamState> {
       title: "HomePage", //Title Name in Browser
       child: HomeScreen(),
     ));
-    if (state.uri.pathSegments.contains("books")) {
+
+    if (state.uri.path.contains("404")) {
+      pages.add(const BeamPage(
+        key: ValueKey("Page not found"),
+        title: "Page not found",
+        child: PageNotFound(),
+      ));
+    }
+
+    if (state.uri.path.contains("books")) {
       pages.add(const BeamPage(
         type: BeamPageType.fadeTransition,
         key: ValueKey("Books"),
@@ -23,13 +32,7 @@ class BooksLocation extends BeamLocation<BeamState> {
         child: BooksScreen(),
       ));
     }
-    if (state.pathParameters.isEmpty) {
-      pages.add(const BeamPage(
-        key: ValueKey("Page not found"),
-        title: "Page not found",
-        child: PageNotFound(),
-      ));
-    }
+
     final String? bookIdParameter = state.pathParameters["bookId"];
     if (bookIdParameter != null) {
       // Book? bookData = data as Book?; // Data passed from the screen
@@ -61,6 +64,7 @@ class BooksLocation extends BeamLocation<BeamState> {
 
   @override
   List<Pattern> get pathPatterns => [
+        "/404",
         "/books/:bookId",
         "/",
       ];
