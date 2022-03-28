@@ -14,12 +14,15 @@ class ContactDetailScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircleAvatar(
-                radius: 75,
-                child: Text(
-                  contact?.id.toString() ?? "",
-                  style: const TextStyle(fontSize: 50),
-                )),
+            Hero(
+              tag: contact?.id.toString() ?? "",
+              child: CircleAvatar(
+                  radius: 75,
+                  child: Text(
+                    contact?.id.toString() ?? "",
+                    style: const TextStyle(fontSize: 50),
+                  )),
+            ),
             const SizedBox(height: 10),
             ContactFields(fieldName: "Name : ", field: contact?.name),
             ContactFields(fieldName: "Username : ", field: contact?.username),

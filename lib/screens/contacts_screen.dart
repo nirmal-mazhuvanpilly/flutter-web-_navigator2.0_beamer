@@ -49,8 +49,11 @@ class _ContactsScreenState extends State<ContactsScreen> {
                           borderRadius: BorderRadius.circular(10)),
                       child: Row(
                         children: [
-                          CircleAvatar(
-                            child: Text(_data?.id.toString() ?? ""),
+                          Hero(
+                            tag: _data?.id.toString() ?? "",
+                            child: CircleAvatar(
+                              child: Text(_data?.id.toString() ?? ""),
+                            ),
                           ),
                           const SizedBox(width: 10),
                           Column(
