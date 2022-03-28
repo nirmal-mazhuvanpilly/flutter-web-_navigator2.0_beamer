@@ -1,8 +1,11 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web_app_navigation/provider/contacts_provider.dart';
+import 'package:flutter_web_app_navigation/screens/contact_detail_screen.dart';
 import 'package:flutter_web_app_navigation/screens/contacts_screen.dart';
 import 'package:flutter_web_app_navigation/screens/home_screen.dart';
 import 'package:flutter_web_app_navigation/screens/page_not_found.dart';
+import 'package:provider/provider.dart';
 
 class ContactsLocation extends BeamLocation<BeamState> {
   @override
@@ -29,6 +32,38 @@ class ContactsLocation extends BeamLocation<BeamState> {
         title: "Contacts",
         child: ContactsScreen(),
       ));
+    }
+
+    final String? contactIdParameter = state.pathParameters["contactId"];
+    if (contactIdParameter != null) {
+      final contactId = int.tryParse(contactIdParameter);
+      bool isPage = context
+          .read<ContactsProvider>()
+          .contactList!
+          .any((element) => element.id == contactId);
+      if (isPage) {
+        final contact = context
+            .read<ContactsProvider>()
+            .contactList
+            ?.firstWhere((contact) => contact.id == contactId);
+        if (contact != null) {
+          pages.add(
+            BeamPage(
+              key: ValueKey('Contact-$contactIdParameter'),
+              title: 'Contact $contactIdParameter',
+              child: ContactDetailScreen(
+                contact: contact,
+              ),
+            ),
+          );
+        }
+      } else {
+        pages.add(const BeamPage(
+          key: ValueKey("Page not found"),
+          title: "Page not found",
+          child: PageNotFound(),
+        ));
+      }
     }
     return pages;
   }

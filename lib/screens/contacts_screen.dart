@@ -1,5 +1,7 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_app_navigation/provider/contacts_provider.dart';
+import 'package:flutter_web_app_navigation/widgets/common_app_bar.dart';
 import 'package:provider/provider.dart';
 
 class ContactsScreen extends StatefulWidget {
@@ -19,6 +21,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CommonAppBar(),
       body: Center(
         child: Consumer<ContactsProvider>(
           builder: (context, value, child) {
@@ -31,7 +34,13 @@ class _ContactsScreenState extends State<ContactsScreen> {
                 itemBuilder: (context, index) {
                   final _data = value.contactList?.elementAt(index);
                   return GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      {
+                        context.beamToNamed(
+                          '/contacts/${_data?.id}',
+                        );
+                      }
+                    },
                     child: Container(
                       padding: const EdgeInsets.all(10),
                       margin: const EdgeInsets.all(10),
