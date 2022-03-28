@@ -4,16 +4,7 @@ import 'package:flutter_web_app_navigation/models/book.dart';
 import 'package:flutter_web_app_navigation/widgets/common_app_bar.dart';
 
 class BooksScreen extends StatelessWidget {
-  BooksScreen({Key? key}) : super(key: key);
-
-  final List<Book>? bookList = [
-    const Book(
-        id: 1,
-        name: 'Stranger in a Strange Land',
-        author: 'Robert A. Heinlein'),
-    const Book(id: 2, name: 'Foundation', author: 'Isaac Asimov'),
-    const Book(id: 3, name: 'Fahrenheit 451', author: 'Ray Bradbury'),
-  ];
+  const BooksScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +12,7 @@ class BooksScreen extends StatelessWidget {
       appBar: CommonAppBar(),
       body: Center(
         child: ListView(
-          children: bookList!
+          children: BookList.bookList!
               .map((bookData) => GestureDetector(
                     onTap: () {
                       context.beamToNamed('/books/${bookData.id}',
