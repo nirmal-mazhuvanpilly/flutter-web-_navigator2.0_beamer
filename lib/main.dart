@@ -6,6 +6,7 @@ import 'package:flutter_web_app_navigation/provider/contacts_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  Beamer.setPathUrlStrategy();
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
       create: (context) => ContactsProvider(),
