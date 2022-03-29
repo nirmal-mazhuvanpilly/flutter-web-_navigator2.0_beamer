@@ -59,6 +59,7 @@ class ContactsLocation extends BeamLocation<BeamState> {
               BeamPage(
                 key: ValueKey('Contact-$contactIdParameter'),
                 title: 'Contact $contactIdParameter',
+                type: BeamPageType.fadeTransition,
                 child: ContactDetailScreen(
                   contact: contact,
                 ),

@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 
 class DataNotFound extends StatelessWidget {
@@ -5,11 +6,27 @@ class DataNotFound extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text(
-          "Data Not Found",
-          style: TextStyle(fontSize: 100),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "Data Not Found",
+              style: TextStyle(fontSize: 100),
+            ),
+            InkWell(
+              onTap: () {
+                context.beamToNamed("/contacts");
+              },
+              child: Text(
+                "Click here to get contacts",
+                style: TextStyle(
+                  color: Colors.blue.shade700,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
