@@ -38,6 +38,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
                       {
                         context.beamToNamed(
                           '/contacts/${_data?.id}',
+                          data: _data?.name
                         );
                       }
                     },
