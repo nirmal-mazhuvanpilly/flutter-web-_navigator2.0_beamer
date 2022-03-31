@@ -1,5 +1,6 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web_app_navigation/beamer/auth_location.dart';
 import 'package:flutter_web_app_navigation/beamer/books_location.dart';
 import 'package:flutter_web_app_navigation/beamer/contacts_location.dart';
 import 'package:flutter_web_app_navigation/provider/contacts_provider.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
   final routerDelegate = BeamerDelegate(
     locationBuilder: BeamerLocationBuilder(
       beamLocations: [
+        AuthLocation(),
         BooksLocation(),
         ContactsLocation(),
       ],
