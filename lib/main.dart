@@ -1,19 +1,29 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web_app_navigation/screens/home_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final BeamerDelegate routerDelegate = BeamerDelegate(
+      initialPath: "/books",
+      locationBuilder: RoutesLocationBuilder(routes: {
+        "*": (context, state, data) => HomeScreen(),
+      }));
+
+  MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Web App Navigation',
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      home: const Scaffold(),
+      routerDelegate: routerDelegate,
+      routeInformationParser: BeamerParser(),
     );
   }
 }
