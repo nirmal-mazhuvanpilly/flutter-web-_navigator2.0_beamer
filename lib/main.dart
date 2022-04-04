@@ -3,14 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_app_navigation/beamer/auth_location.dart';
 import 'package:flutter_web_app_navigation/beamer/books_location.dart';
 import 'package:flutter_web_app_navigation/beamer/contacts_location.dart';
+import 'package:flutter_web_app_navigation/provider/auth_provider.dart';
 import 'package:flutter_web_app_navigation/provider/contacts_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   Beamer.setPathUrlStrategy();
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
       create: (context) => ContactsProvider(),
+    ),
+    ChangeNotifierProvider(
+      create: (context) => AuthProvider(),
     )
   ], child: MyApp()));
 }

@@ -1,9 +1,11 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_app_navigation/models/book.dart';
+import 'package:flutter_web_app_navigation/provider/auth_provider.dart';
 import 'package:flutter_web_app_navigation/screens/books_detail_screen.dart';
 import 'package:flutter_web_app_navigation/screens/books_screen.dart';
 import 'package:flutter_web_app_navigation/screens/page_not_found.dart';
+import 'package:provider/provider.dart';
 
 class BooksLocation extends BeamLocation<BeamState> {
   @override
@@ -62,5 +64,18 @@ class BooksLocation extends BeamLocation<BeamState> {
         "/books/:bookId",
         "/books",
         "/",
+      ];
+
+  @override
+  List<BeamGuard> get guards => <BeamGuard>[
+        BeamGuard(
+            pathPatterns: [
+              "/books/*",
+              "/books",
+            ],
+            check: (context, location) {
+              return context.read<AuthProvider>().isLoggedIn;
+            },
+            beamToNamed: (_, __) => "/login"),
       ];
 }

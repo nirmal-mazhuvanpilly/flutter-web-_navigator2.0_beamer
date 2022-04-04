@@ -1,8 +1,10 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web_app_navigation/provider/auth_provider.dart';
 import 'package:flutter_web_app_navigation/screens/contacts_screen.dart';
 import 'package:flutter_web_app_navigation/screens/contact_detail_screen_state.dart';
 import 'package:flutter_web_app_navigation/screens/page_not_found.dart';
+import 'package:provider/provider.dart';
 
 class ContactsLocation extends BeamLocation<BeamState> {
   @override
@@ -45,5 +47,18 @@ class ContactsLocation extends BeamLocation<BeamState> {
         "404",
         "/contacts/:contactId",
         "/",
+      ];
+
+  @override
+  List<BeamGuard> get guards => <BeamGuard>[
+        BeamGuard(
+            pathPatterns: [
+              "/contacts/*",
+              "/contacts",
+            ],
+            check: (context, location) {
+              return context.read<AuthProvider>().isLoggedIn;
+            },
+            beamToNamed: (_, __) => "/login"),
       ];
 }

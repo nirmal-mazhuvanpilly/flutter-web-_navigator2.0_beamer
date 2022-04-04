@@ -1,7 +1,10 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web_app_navigation/provider/auth_provider.dart';
 import 'package:flutter_web_app_navigation/screens/home_screen.dart';
+import 'package:flutter_web_app_navigation/screens/login_page_screen.dart';
 import 'package:flutter_web_app_navigation/screens/page_not_found.dart';
+import 'package:provider/provider.dart';
 
 class AuthLocation extends BeamLocation<BeamState> {
   @override
@@ -20,6 +23,14 @@ class AuthLocation extends BeamLocation<BeamState> {
         child: PageNotFound(),
       ));
     }
+
+    if (state.uri.path.contains("login")) {
+      pages.add(const BeamPage(
+        key: ValueKey("login"),
+        title: "Login",
+        child: LoginScreen(),
+      ));
+    }
     return pages;
   }
 
@@ -27,5 +38,18 @@ class AuthLocation extends BeamLocation<BeamState> {
   List<Pattern> get pathPatterns => [
         "/404",
         "/",
+        "/login",
+      ];
+
+  @override
+  List<BeamGuard> get guards => <BeamGuard>[
+        BeamGuard(
+            pathPatterns: [
+              "/",
+            ],
+            check: (context, location) {
+              return context.read<AuthProvider>().isLoggedIn;
+            },
+            beamToNamed: (_, __) => "/login")
       ];
 }
