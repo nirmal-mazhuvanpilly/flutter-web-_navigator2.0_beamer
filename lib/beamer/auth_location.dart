@@ -48,7 +48,7 @@ class AuthLocation extends BeamLocation<BeamState> {
               "/",
             ],
             check: (context, location) {
-              return context.read<AuthProvider>().isLoggedIn;
+              return context.read<AuthProvider>().isLoggedIn ?? false;
             },
             beamToNamed: (_, __) => "/login")
       ];

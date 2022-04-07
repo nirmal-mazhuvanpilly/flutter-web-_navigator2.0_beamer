@@ -74,7 +74,7 @@ class BooksLocation extends BeamLocation<BeamState> {
               "/books",
             ],
             check: (context, location) {
-              return context.read<AuthProvider>().isLoggedIn;
+              return context.read<AuthProvider>().isLoggedIn ?? false;
             },
             beamToNamed: (_, __) => "/login"),
       ];

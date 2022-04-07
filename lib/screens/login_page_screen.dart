@@ -11,8 +11,8 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: InkWell(
-          onTap: () {
-            context.read<AuthProvider>().setLoginTrue();
+          onTap: () async {
+            await context.read<AuthProvider>().setLoginTrue();
             context.beamToReplacementNamed("/");
           },
           child: const Text(

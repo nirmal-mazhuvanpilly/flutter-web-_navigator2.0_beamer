@@ -1,9 +1,32 @@
-import 'package:flutter/cupertino.dart';
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html';
+import 'package:flutter/material.dart';
 
 class AuthProvider with ChangeNotifier {
-  bool get isLoggedIn => true;
+  Storage? storage = window.localStorage;
 
-  void setLoginTrue() {}
+  Storage? initialiseStorage() {
+    if (storage == null) {
+      storage = window.localStorage;
+      return storage;
+    } else {
+      return storage;
+    }
+  }
 
-  void setLoginFalse() {}
+  bool? get isLoggedIn {
+    Storage? storage = initialiseStorage();
+    bool? isLogged = storage?["isLoggedIn"]?.isNotEmpty;
+    return isLogged;
+  }
+
+  setLoginTrue() {
+    Storage? storage = initialiseStorage();
+    storage?["isLoggedIn"] = "true";
+  }
+
+  setLoginFalse() {
+    Storage? storage = initialiseStorage();
+    storage?["isLoggedIn"] = "";
+  }
 }

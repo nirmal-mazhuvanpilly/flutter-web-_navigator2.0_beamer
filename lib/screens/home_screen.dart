@@ -1,6 +1,8 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web_app_navigation/provider/auth_provider.dart';
 import 'package:flutter_web_app_navigation/widgets/common_app_bar.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -10,51 +12,63 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: CommonAppBar(title: "HomeScreen", backButtonEnabled: false),
       body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Stack(
+          alignment: Alignment.center,
           children: [
-            GestureDetector(
-              onTap: () => context.beamToNamed('/books'),
-              child: Container(
-                  height: 200,
-                  width: 200,
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: LinearGradient(colors: [
-                        Colors.blue,
-                        Colors.blue.shade900,
-                      ])),
-                  child: const Center(
-                      child: Text(
-                    'See books',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500),
-                  ))),
-            ),
-            const SizedBox(width: 10),
-            GestureDetector(
-              onTap: () => context.beamToNamed('/contacts'),
-              child: Container(
-                  height: 200,
-                  width: 200,
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: LinearGradient(colors: [
-                        Colors.blue,
-                        Colors.blue.shade900,
-                      ])),
-                  child: const Center(
-                      child: Text(
-                    'See Contacts',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500),
-                  ))),
+            Align(
+                alignment: Alignment.topRight,
+                child: TextButton(
+                    onPressed: () async {
+                      await context.read<AuthProvider>().setLoginFalse();
+                    },
+                    child: const Text("logout"))),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () => context.beamToNamed('/books'),
+                  child: Container(
+                      height: 200,
+                      width: 200,
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: LinearGradient(colors: [
+                            Colors.blue,
+                            Colors.blue.shade900,
+                          ])),
+                      child: const Center(
+                          child: Text(
+                        'See books',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500),
+                      ))),
+                ),
+                const SizedBox(width: 10),
+                GestureDetector(
+                  onTap: () => context.beamToNamed('/contacts'),
+                  child: Container(
+                      height: 200,
+                      width: 200,
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: LinearGradient(colors: [
+                            Colors.blue,
+                            Colors.blue.shade900,
+                          ])),
+                      child: const Center(
+                          child: Text(
+                        'See Contacts',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500),
+                      ))),
+                ),
+              ],
             ),
           ],
         ),
